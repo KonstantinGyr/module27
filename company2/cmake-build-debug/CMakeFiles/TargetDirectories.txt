@@ -1,0 +1,3 @@
+C:/Users/Kot/CLionProjects/hw27/company2/cmake-build-debug/CMakeFiles/company2.dir
+C:/Users/Kot/CLionProjects/hw27/company2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Kot/CLionProjects/hw27/company2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

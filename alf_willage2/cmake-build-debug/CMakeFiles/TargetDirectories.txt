@@ -1,0 +1,3 @@
+C:/Users/Kot/CLionProjects/hw27/alf_willage2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Kot/CLionProjects/hw27/alf_willage2/cmake-build-debug/CMakeFiles/alf_willage2.dir
+C:/Users/Kot/CLionProjects/hw27/alf_willage2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
