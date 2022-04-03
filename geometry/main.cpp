@@ -35,22 +35,22 @@ class Circle:public Core{
     double radius;
     Core coreCir;
 public:
-    void setDataCircle(int x,int y,std::string str){
-        coreCir.xCenter=x;
-        coreCir.yCenter=y;
-        coreCir.setColor(str);
+    Circle(int inX,int inY,std::string inStr)
+    {
+        coreCir.xCenter = inX;
+        coreCir.yCenter = inY;
+        coreCir.setColor(inStr);
         std::cout<<"Enter circle radius: ";
         std::cin>>radius;
     }
-    void outputParameters(){
+    void outputArea() {
         std::cout<<"Area ";
         printColor(coreCir.color);
         std::cout<<" circle: "<< (3.1415*radius*radius)<<std::endl;
-        std::cout<<"Angle coordinates of circumscribing rectangle (x|y):"<<std::endl;
-        std::cout << coreCir.xCenter - radius << " | " << coreCir.yCenter + radius << " , ";
-        std::cout << coreCir.xCenter + radius << " | " << coreCir.yCenter + radius << " , ";
-        std::cout << coreCir.xCenter + radius << " | " << coreCir.yCenter - radius << " , ";
-        std::cout << coreCir.xCenter - radius << " | " << coreCir.yCenter - radius << std::endl;
+    }
+    void rectScribe(){
+        std::cout<<"Center of circumscribing rectangle (x|y):"<<coreCir.xCenter<<" | "<<coreCir.yCenter<<std::endl;
+        std::cout<<"Width: "<<radius*2<<" High: "<<radius*2<<std::endl;
     }
 };
 
@@ -58,23 +58,23 @@ class Triangle : public Core{
     double side;
     Core core;
 public:
-    void setDataTriangle(int x,int y,std::string str){
+    Triangle(int x,int y,std::string str){
         core.xCenter=x;
         core.yCenter=y;
         core.setColor(str);
         std::cout<<"Enter triangle side length: ";
         std::cin>>side;
     }
-    void outputParameters(){
-        double h=sqrt(3)*side*side/4;
-        std::cout<<"Area ";
+    void outputArea() {
+        double h = sqrt(3) * side * side / 4;
+        std::cout << "Area ";
         printColor(core.color);
-        std::cout<<" triangle: "<< h <<std::endl;
-        std::cout<<"Angle coordinates of circumscribing rectangle (x|y):"<<std::endl;
-        std::cout<<core.xCenter-side/2<<" | "<<core.yCenter+h*2/3<<" , ";
-        std::cout<<core.xCenter+side/2<<" | "<<core.yCenter+h*2/3<<" , ";
-        std::cout<<core.xCenter+side/2<<" | "<<core.yCenter-h/3<<" , ";
-        std::cout<<core.xCenter-side/2<<" | "<<core.yCenter-h/3<<std::endl;
+        std::cout << " triangle: " << h * side/2<< std::endl;
+    }
+    void rectScribe() {
+        std::cout << "Center of circumscribing rectangle (x|y):" << core.xCenter << " | " << core.yCenter
+                  << std::endl;
+        std::cout << "Width: " << side << " High: " << sqrt(3) * side * side / 4<<std::endl;
     }
 };
 
@@ -82,22 +82,22 @@ class Square : public Core{
     double side;
     Core core;
 public:
-    void setDataSquare(int x,int y,std::string str){
+    Square(int x,int y,std::string str){
         core.xCenter=x;
         core.yCenter=y;
         core.setColor(str);
         std::cout<<"Enter square side length: ";
         std::cin>>side;
     }
-    void outputParameters(){
+    void outputArea(){
         std::cout<<"Area ";
         printColor(core.color);
         std::cout<<" square: "<< side*side <<std::endl;
-        std::cout<<"Angle coordinates of circumscribing rectangle (x|y):"<<std::endl;
-        std::cout<<core.xCenter-side/2<<" | "<<core.yCenter+side/2<<" , ";
-        std::cout<<core.xCenter+side/2<<" | "<<core.yCenter+side/2<<" , ";
-        std::cout<<core.xCenter+side/2<<" | "<<core.yCenter-side/2<<" , ";
-        std::cout<<core.xCenter-side/2<<" | "<<core.yCenter-side/2<<std::endl;
+    }
+    void rectScribe()  {
+        std::cout << "Center of circumscribing rectangle (x|y):" << core.xCenter << " | " << core.yCenter
+                  << std::endl;
+        std::cout << "Width: " << side << " High: " << side<<std::endl;
     }
 };
 
@@ -106,7 +106,7 @@ class Rectangle : public Core{
     double high;
     Core core;
 public:
-    void setDataRectangle(int x,int y,std::string str){
+    Rectangle(int x,int y,std::string str){
         core.xCenter=x;
         core.yCenter=y;
         core.setColor(str);
@@ -115,25 +115,19 @@ public:
         std::cout<<"Enter rectangle high:";
         std::cin>>high;
     }
-    void outputParameter(){
-        std::cout<<"Area ";
+    void outputArea() {
+        std::cout << "Area ";
         printColor(core.color);
-        std::cout<<" rectangle: "<< width*high <<std::endl;
-        std::cout<<"Angle coordinates of circumscribing rectangle (x|y):"<<std::endl;
-        std::cout<<core.xCenter-width/2<<" | "<<core.yCenter+high/2<<" , ";
-        std::cout<<core.xCenter+width/2<<" | "<<core.yCenter+high/2<<" , ";
-        std::cout<<core.xCenter+width/2<<" | "<<core.yCenter-high/2<<" , ";
-        std::cout<<core.xCenter-width/2<<" | "<<core.yCenter-high/2<<std::endl;
+        std::cout << " rectangle: " << width * high << std::endl;
+    }
+    void rectScribe(){
+        std::cout<<"Circumscribing rectangle have\n width: "<<width<<" high: "<<high;
     }
 };
 
 int main() {
     std::string name ;
     int x,y;
-    Circle*circle=new Circle();
-    Triangle*triangle=new Triangle();
-    Square*square=new Square;
-    Rectangle*rectangle=new Rectangle;
     std::string command;
     do {
         std::cout << "Enter command: ";
@@ -143,34 +137,34 @@ int main() {
             std::cin >> x >> y;
             std::cout << "Enter color: ";
             std::cin >> name;
-            circle->setDataCircle(x, y, name);
-            circle->outputParameters();
+            Circle circle= Circle(x,y,name);
+            circle.outputArea();
+            circle.rectScribe();
         } else if (command == "triangle") {
             std::cout << "Enter center coordinates : ";
             std::cin >> x >> y;
             std::cout << "Enter color: ";
             std::cin >> name;
-            triangle->setDataTriangle(x, y, name);
-            triangle->outputParameters();
+            Triangle triangle=Triangle(x, y, name);
+            triangle.outputArea();
+            triangle.rectScribe();
         } else if (command == "square") {
             std::cout << "Enter center coordinates : ";
             std::cin >> x >> y;
             std::cout << "Enter color: ";
             std::cin >> name;
-            square->setDataSquare(x, y, name);
-            square->outputParameters();
+            Square square= Square(x, y, name);
+            square.outputArea();
+            square.rectScribe();
         } else if (command == "rectangle") {
             std::cout << "Enter center coordinates : ";
             std::cin >> x >> y;
             std::cout << "Enter color: ";
             std::cin >> name;
-            rectangle->setDataRectangle(x, y, name);
-            rectangle->outputParameter();
+            Rectangle rectangle= Rectangle(x,y,name);
+            rectangle.outputArea();
+            rectangle.rectScribe();
         }
     }while(command!="stop");
-    delete circle;
-    delete triangle;
-    delete square;
-    delete rectangle;
     return 0;
 }
